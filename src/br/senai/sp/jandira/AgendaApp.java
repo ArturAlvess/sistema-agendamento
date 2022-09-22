@@ -5,7 +5,7 @@ import java.time.LocalTime;
 
 import br.senai.sp.jandira.model.Agenda;
 import br.senai.sp.jandira.model.Endereco;
-import br.senai.sp.jandira.model.Especilidade;
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.Paciente;
 import br.senai.sp.jandira.model.PlanoDeSaude;
@@ -14,30 +14,30 @@ public class AgendaApp {
 
 	public static void main(String[] args) {
 
-		Especilidade especialidade1 = new Especilidade();
+		Especialidade especialidade1 = new Especialidade();
 		especialidade1.setNome("Cardiologia");
 		especialidade1.setDescricao("Assuntos sobre o coração.");
 
-		Especilidade especialidade2 = new Especilidade();
+		Especialidade especialidade2 = new Especialidade();
 		especialidade2.setNome("Otorrinolaringologia");
 		especialidade2.setDescricao("Assuntos sobre vias aéreas.");
 
-		Especilidade especialidade3 = new Especilidade();
+		Especialidade especialidade3 = new Especialidade();
 		especialidade3.setNome("Gastroenterologia");
 		especialidade3.setDescricao("Assuntos sobre órgãos do aparelho digestivo");
 
-		Especilidade especialidade4 = new Especilidade();
+		Especialidade especialidade4 = new Especialidade();
 		especialidade4.setNome("Fisioterapia");
 		especialidade4.setDescricao("Assuntos sobre casos físicos.");
 
-		Especilidade especialidade5 = new Especilidade();
+		Especialidade especialidade5 = new Especialidade();
 		especialidade5.setNome("Clínica Geral");
 		especialidade5.setDescricao("Assuntos do dia a dia");
 
 		System.out.println("- LISTA DE MÉDICOS -");
 		Medico medico1 = new Medico();
 		medico1.setNome("Celso Furtado");
-		Especilidade[] especialidadesMed1 = { especialidade1, especialidade5 };
+		Especialidade[] especialidadesMed1 = { especialidade1, especialidade5 };
 		medico1.setTelefone("11 99876-8762");
 		medico1.setEmail("celsofurtado86@gmail.com");
 		medico1.setCrm("645387 CRM/SP");
@@ -57,7 +57,7 @@ public class AgendaApp {
 
 		Medico medico2 = new Medico();
 		medico2.setNome("Oswaldo Barbosa");
-		Especilidade[] especialidadesMed2 = { especialidade1, especialidade4, especialidade5 };
+		Especialidade[] especialidadesMed2 = { especialidade1, especialidade4, especialidade5 };
 		medico2.setTelefone("11 99456-2764");
 		medico2.setEmail("oswaldao@gmail.com");
 		medico2.setCrm("947283 CRM/SP");
@@ -159,7 +159,7 @@ public class AgendaApp {
 
 		System.out.println("----------------------------------------");
 		System.out.println(" - AGENDAMENTOS -");
-		System.out.println("Nome do paciente: "+ consulta1.getPaciente().getNome());
+		System.out.println("Nome do paciente: " + consulta1.getPaciente().getNome());
 		System.out.println("Data: " + consulta1.getDataDaConsulta());
 		System.out.println("Horário: " + consulta1.getHoraDaConsulta());
 		System.out.println("Médico: " + consulta1.getMedico().getNome());

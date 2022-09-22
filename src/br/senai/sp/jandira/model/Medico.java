@@ -6,7 +6,7 @@ public class Medico {
 	private String telefone;
 	private String email;
 	private String crm;
-	private Especilidade[] especialidade;
+	private Especialidade[] especialidade;
 
 	
 	//Método de acesso
@@ -43,11 +43,11 @@ public class Medico {
 		this.crm = crm;
 	}
 
-	public Especilidade[] getEspecialidade() {
+	public Especialidade[] getEspecialidade() {
 		return especialidade;
 	}
 
-	public void setEspecialidade(Especilidade[] especialidade) {
+	public void setEspecialidade(Especialidade[] especialidade) {
 		this.especialidade = especialidade;
 	}
 

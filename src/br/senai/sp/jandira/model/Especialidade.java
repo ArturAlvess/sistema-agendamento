@@ -2,12 +2,27 @@ package br.senai.sp.jandira.model;
 
 import javax.swing.JOptionPane;
 
-public class Especilidade {
+public class Especialidade {
 
 	private String nome;
 	private String descricao;
+	
+	
+	// Constructor method
+	public Especialidade(String nome) {
+		this.nome = nome;
+	}
+	
+	public Especialidade(String nome, String descricao) {
+		this.nome = nome;
+		this.nome = descricao;
+	}
+	
+	public Especialidade() {
 
+	}
 	// Métodos de acesso aos atributos
+	
 	public void setNome(String nome) {
 		if (nome.length() >= 3) {
 			this.nome = nome;

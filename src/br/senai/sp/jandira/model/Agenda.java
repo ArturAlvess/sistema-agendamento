@@ -9,7 +9,7 @@ public class Agenda {
 	private LocalTime horaDaConsulta;
 	private Paciente paciente;
 	private Medico medico;
-	private Especilidade especialidade;
+	private Especialidade especialidade;
 
 	// métodos de acesso
 	
@@ -45,11 +45,11 @@ public class Agenda {
 		this.medico = medico;
 	}
 
-	public Especilidade getEspecialidade() {
+	public Especialidade getEspecialidade() {
 		return especialidade;
 	}
 
-	public void setEspecialidade(Especilidade especialidade) {
+	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
 	}
 
