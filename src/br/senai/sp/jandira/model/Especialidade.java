@@ -19,7 +19,7 @@ public class Especialidade {
 
     public Especialidade(String nome, String descricao) {
         this.nome = nome;
-        this.nome = descricao;
+        this.descricao = descricao;
         this.contador++;
         this.codigo = contador;
 
@@ -63,6 +63,10 @@ public class Especialidade {
 
     public Integer getCodigo() {
         return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
     }
     
     

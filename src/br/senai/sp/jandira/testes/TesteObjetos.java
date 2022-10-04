@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import br.senai.sp.jandira.AgendaApp;
+import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 
@@ -29,8 +30,31 @@ public class TesteObjetos {
         e4.setDescricao("não deixa o olho ruim");
         
         Especialidade e5 = new Especialidade();
-        e5.setNome("Urologista");
+        e5.setNome("nomenome");
         e5.setDescricao("netherlands");
+        
+   
+        EspecialidadeDAO.gravar(e5);
+        EspecialidadeDAO.gravar(e2);
+        
+        System.out.println("tamanho- " + EspecialidadeDAO.getEspecialidades().size()); 
+        
+        EspecialidadeDAO.gravar(e3);
+        EspecialidadeDAO.gravar(e4);
+        
+        System.out.println("tamanho- " + EspecialidadeDAO.getEspecialidades().size());
+        System.out.println("tamanho- " + EspecialidadeDAO.getEspecialidades().size());
+        
+        System.out.println("A especialidade é: " + EspecialidadeDAO.getEspecialidade(103).getNome());
+        
+        EspecialidadeDAO.excluir(104);
+        System.out.println("tamanho- " + EspecialidadeDAO.getEspecialidades().size());
+        
+        Especialidade correta = new Especialidade("Urologia", "netherlands");
+        correta.setCodigo(e4.getCodigo());
+        EspecialidadeDAO.atualizar(correta);
+        
+        System.out.println(EspecialidadeDAO.getEspecialidade(103).getNome());
 
         //Exibir a quantidade de especialidades
         System.out.println("ESPECIALIDADES ------>" + e1.getContador());
