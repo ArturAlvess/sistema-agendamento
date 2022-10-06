@@ -43,10 +43,22 @@ public class EspecialidadeDAO {
             if(correta.getCodigo() == e.getCodigo()){
             int posicao = especialidades.indexOf(e);
             especialidades.set(posicao, correta);
-        }
-            
-        
+        }  
     }
+    }
+    
+    // Lista inicial de especialidades
+    
+    public static void criarListaDeEspecialidades(){
+        Especialidade e1 = new Especialidade("Cardiologia", "Cuida do coração");
+        Especialidade e2 = new Especialidade("Fisioterapia", "Cuida dos movimentos do corpo");
+        Especialidade e3 = new Especialidade("Urologia", "Cuida das partes genitais masculinas");
+        Especialidade e4 = new Especialidade("Dermatologia", "Cuida da pele");
+        
+        especialidades.add(e1);
+        especialidades.add(e2);
+        especialidades.add(e3);
+        especialidades.add(e4);
     }
     
 }
