@@ -60,14 +60,14 @@ public class HomeFrame extends javax.swing.JFrame {
         panelHome.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 39, 97));
+        jLabel1.setForeground(new java.awt.Color(102, 0, 102));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/logo.png"))); // NOI18N
-        jLabel1.setText("SISACON");
+        jLabel1.setText("TUEZIN DO 085");
         panelHome.add(jLabel1);
-        jLabel1.setBounds(0, 20, 400, 170);
+        jLabel1.setBounds(0, 20, 490, 170);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(124, 119, 255));
+        jLabel2.setForeground(new java.awt.Color(164, 65, 164));
         jLabel2.setText("Sistema de Agendamentos de Consultas");
         panelHome.add(jLabel2);
         jLabel2.setBounds(130, 140, 270, 20);
@@ -79,12 +79,12 @@ public class HomeFrame extends javax.swing.JFrame {
         jLabel3.setBounds(730, 170, 160, 50);
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("www.sisacon.com.br");
+        jLabel4.setText("www.tue.com.br");
         panelHome.add(jLabel4);
         jLabel4.setBounds(730, 260, 170, 16);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Email - suporte@sisacon.com");
+        jLabel5.setText("Email - suporte@tuezin.com");
         panelHome.add(jLabel5);
         jLabel5.setBounds(730, 220, 170, 16);
 
@@ -93,7 +93,7 @@ public class HomeFrame extends javax.swing.JFrame {
         panelHome.add(jLabel6);
         jLabel6.setBounds(730, 240, 170, 16);
 
-        jPanel2.setBackground(new java.awt.Color(0, 0, 153));
+        jPanel2.setBackground(new java.awt.Color(102, 0, 102));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
