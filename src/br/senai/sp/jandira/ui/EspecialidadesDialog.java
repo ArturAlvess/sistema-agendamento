@@ -5,22 +5,38 @@ import br.senai.sp.jandira.model.Especialidade;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
-
 public class EspecialidadesDialog extends javax.swing.JDialog {
 
-    public EspecialidadesDialog(java.awt.Frame parent, boolean modal) {
+    Especialidade especialidade;
+
+    public EspecialidadesDialog(java.awt.Frame parent,boolean modal) {
         super(parent, modal);
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/senai/sp/jandira/img/agenda.png")));
     }
 
-   
+    public EspecialidadesDialog(java.awt.Frame parent, boolean modal, Especialidade e) {
+        super(parent, modal);
+        initComponents();
+        especialidade = e;
+        preencherFormulario();
+
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/senai/sp/jandira/img/agenda.png")));
+    }
+
+    private void preencherFormulario() {
+        labelTitulo.setText("Especialidades - EDITAR");
+        textFieldCodigo.setText(especialidade.getCodigo().toString());
+        textFieldNomeEspecialidade.setText(especialidade.getNome());
+        textFieldDescEspecialidade.setText(especialidade.getDescricao());
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         panelTitulo = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labelTitulo = new javax.swing.JLabel();
         panelDetalhes = new javax.swing.JPanel();
         labelCodigo = new javax.swing.JLabel();
         textFieldCodigo = new javax.swing.JTextField();
@@ -38,12 +54,12 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         panelTitulo.setBackground(new java.awt.Color(106, 218, 165));
         panelTitulo.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/new.png"))); // NOI18N
-        jLabel1.setText("  Especialidades - Adicionar");
-        panelTitulo.add(jLabel1);
-        jLabel1.setBounds(30, 20, 300, 50);
+        labelTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        labelTitulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/senai/sp/jandira/img/new.png"))); // NOI18N
+        labelTitulo.setText("  Especialidades - Adicionar");
+        panelTitulo.add(labelTitulo);
+        labelTitulo.setBounds(30, 20, 300, 50);
 
         getContentPane().add(panelTitulo);
         panelTitulo.setBounds(0, 0, 747, 90);
@@ -116,21 +132,20 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         Especialidade especialidade = new Especialidade();
         especialidade.setNome(textFieldNomeEspecialidade.getText());
         especialidade.setDescricao(textFieldDescEspecialidade.getText());
-        
+
         // Gravar o objeto
         EspecialidadeDAO.gravar(especialidade);
-        
+
         JOptionPane.showMessageDialog(this,
                 "Especialidade gravada com sucesso!",
                 "Especialidades",
                 JOptionPane.INFORMATION_MESSAGE);
-        
+
         dispose();
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
-    
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 EspecialidadesDialog dialog = new EspecialidadesDialog(new javax.swing.JFrame(), true);
@@ -148,10 +163,10 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonSalvar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelCodigo;
     private javax.swing.JLabel labelDesc;
     private javax.swing.JLabel labelNome;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelDetalhes;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JTextField textFieldCodigo;

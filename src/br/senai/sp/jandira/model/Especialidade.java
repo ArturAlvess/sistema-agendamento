@@ -8,27 +8,26 @@ public class Especialidade {
     private Integer codigo;
     private String nome;
     private String descricao;
-    
 
     // Constructor method
     public Especialidade(String nome) {
         this.nome = nome;
-        this.contador++;
-        this.codigo = contador;
+        gerarCodigo();
     }
 
     public Especialidade(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
-        this.contador++;
-        this.codigo = contador;
-
+        gerarCodigo();
     }
 
     public Especialidade() {
+        gerarCodigo();
+    }
+
+    private void gerarCodigo() {
         this.contador++;
         this.codigo = contador;
-
     }
     // Métodos de acesso aos atributos
 
@@ -68,6 +67,5 @@ public class Especialidade {
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
-    
-    
+
 }
