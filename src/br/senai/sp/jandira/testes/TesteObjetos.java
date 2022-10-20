@@ -133,15 +133,10 @@ public class TesteObjetos {
 
         //Criar 3 planos de saúde, armazenar em um arrayList
         // e exibir o nome da operadora de cada
-        PlanoDeSaude p1 = new PlanoDeSaude("Amil");
-        PlanoDeSaude p2 = new PlanoDeSaude("Bradesco");
-        PlanoDeSaude p3 = new PlanoDeSaude("Notredame");
+       
 
         ArrayList<PlanoDeSaude> planosDeSaude = new ArrayList<>();
-        planosDeSaude.add(p1);
-        planosDeSaude.add(p2);
-        planosDeSaude.add(p3);
-
+        
         System.out.println("--- Planos ---");
         for (PlanoDeSaude p : planosDeSaude) {
             System.out.println(p.getOperadora());
