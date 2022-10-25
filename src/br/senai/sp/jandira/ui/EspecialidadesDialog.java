@@ -73,7 +73,7 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         buttonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Adicionar Especialidade");
+        setTitle("ESPECIALIDADE");
         getContentPane().setLayout(null);
 
         panelTitulo.setBackground(new java.awt.Color(106, 218, 165));

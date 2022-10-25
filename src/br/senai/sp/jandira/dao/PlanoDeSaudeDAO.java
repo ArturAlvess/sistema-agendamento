@@ -36,11 +36,12 @@ public class PlanoDeSaudeDAO {
         }
     }
 
-    public static void atualizar(PlanoDeSaude correta) {
+    public static void atualizar(PlanoDeSaude novo) {
         for (PlanoDeSaude p : planosDeSaude) {
-            if (correta.getCodigo()== p.getCodigo()) {
-                int posicao = planosDeSaude.indexOf(p);
-                planosDeSaude.set(posicao, correta);
+            if (novo.getCodigo() == p.getCodigo()) {
+                planosDeSaude.set(planosDeSaude.indexOf(p), novo);
+                break;
+                
             }
         }
     }
@@ -51,16 +52,16 @@ public class PlanoDeSaudeDAO {
                 "Notredame",
                 "Essential",
                 LocalDate.of(2023, Month.MARCH, 8), 
-                "000123");
+                "3243-3234-2343");
         PlanoDeSaude p2 = new PlanoDeSaude(
                 "Amil", "Amil400", 
                 LocalDate.of(2024, Month.AUGUST, 28),
-                "002222");
+                "5654-7845-2634");
         PlanoDeSaude p3 = new PlanoDeSaude(
                 "Bradesco",
                 "Gold",
                 LocalDate.of(2022, Month.DECEMBER, 30),
-                "000333");
+                "2374-8473-8374");
         
         planosDeSaude.add(p1);
         planosDeSaude.add(p2);
@@ -78,7 +79,7 @@ public class PlanoDeSaudeDAO {
             dados[i][1] = p.getNumero();
             dados[i][2] = p.getOperadora();
             dados[i][3] = p.getCategoria();
-            dados[i][4] = p.getValidade().toString();
+            dados[i][4] = p.getDataFormatada();
             i++;
         }
         DefaultTableModel model = new DefaultTableModel(dados, titulos);
