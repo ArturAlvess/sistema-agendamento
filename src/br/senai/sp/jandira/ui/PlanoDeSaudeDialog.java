@@ -6,51 +6,47 @@ import br.senai.sp.jandira.model.PlanoDeSaude;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
-
 public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
     private PlanoDeSaude planosDeSaude;
     private OperacaoEnum operacao;
-    
+
     public PlanoDeSaudeDialog(java.awt.Frame parent, boolean modal, OperacaoEnum operacao) {
         super(parent, modal);
         initComponents();
         this.operacao = operacao;
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass()
-                        .getResource
-        ("/br/senai/sp/jandira/img/agenda.png")));
+                        .getResource("/br/senai/sp/jandira/img/agenda.png")));
     }
-    
-    public PlanoDeSaudeDialog(java.awt.Frame parent, boolean modal, PlanoDeSaude p, OperacaoEnum operacao){
+
+    public PlanoDeSaudeDialog(java.awt.Frame parent, boolean modal, PlanoDeSaude p, OperacaoEnum operacao) {
         super(parent, modal);
         initComponents();
-        
+
         planosDeSaude = p;
         this.operacao = operacao;
-        
+
         preencherFormulario();
         preencherTitulo();
-        
+
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass()
-                        .getResource
-        ("/br/senai/sp/jandira/img/agenda.png")));
+                        .getResource("/br/senai/sp/jandira/img/agenda.png")));
     }
-    
-    private void preencherFormulario(){
-        
+
+    private void preencherFormulario() {
+
         textFieldCategoria.setText(planosDeSaude.getCategoria());
         formattedTextNumero.setText(planosDeSaude.getNumero());
         textFieldOperadora.setText(planosDeSaude.getOperadora());
         formattedTextValidade.setText(planosDeSaude.getDataFormatada());
     }
-    
-    private void preencherTitulo(){
+
+    private void preencherTitulo() {
         labelTitulo.setText("Plano de Saúde - " + operacao);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -66,7 +62,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         labelCategoria = new javax.swing.JLabel();
         textFieldCategoria = new javax.swing.JTextField();
         labelValidade = new javax.swing.JLabel();
-        textFieldNumero1 = new javax.swing.JTextField();
+        textFieldCodigo = new javax.swing.JTextField();
         labelNumero1 = new javax.swing.JLabel();
         formattedTextValidade = new javax.swing.JFormattedTextField();
         formattedTextNumero = new javax.swing.JFormattedTextField();
@@ -110,6 +106,11 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         buttonCancelar.setText("CANCELAR");
         buttonCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0), 2));
         buttonCancelar.setPreferredSize(new java.awt.Dimension(80, 20));
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
 
         labelNumero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelNumero.setText("Número:");
@@ -123,10 +124,10 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
         labelValidade.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelValidade.setText("Validade:");
 
-        textFieldNumero1.setEditable(false);
-        textFieldNumero1.addActionListener(new java.awt.event.ActionListener() {
+        textFieldCodigo.setEditable(false);
+        textFieldCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldNumero1ActionPerformed(evt);
+                textFieldCodigoActionPerformed(evt);
             }
         });
 
@@ -163,7 +164,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
                     .addGroup(panelDetalhesLayout.createSequentialGroup()
                         .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(97, 97, 97)
                         .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelValidade, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,12 +172,9 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
                         .addContainerGap(291, Short.MAX_VALUE))
                     .addGroup(panelDetalhesLayout.createSequentialGroup()
                         .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelDetalhesLayout.createSequentialGroup()
-                                .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelCategoria)
-                                    .addComponent(labelNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelOperadora, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(15, 15, 15))
+                            .addComponent(labelCategoria)
+                            .addComponent(labelNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelOperadora, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(textFieldCategoria, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(textFieldOperadora, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -211,7 +209,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(labelNumero1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textFieldNumero1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelNumero)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -240,46 +238,61 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-        if(operacao == OperacaoEnum.ADICIONAR){
+        if (operacao == OperacaoEnum.ADICIONAR) {
             adicionar();
-        }else{
+        } else {
             editar();
         }
-            
-            
+
+
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
-    private void textFieldNumero1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNumero1ActionPerformed
+    private void textFieldCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldNumero1ActionPerformed
+    }//GEN-LAST:event_textFieldCodigoActionPerformed
 
-    private void editar(){
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void editar() {
         planosDeSaude.setCategoria(textFieldCategoria.getText());
         planosDeSaude.setNumero(formattedTextNumero.getText());
         planosDeSaude.setOperadora(textFieldOperadora.getText());
-         planosDeSaude.setDataFormatada(formattedTextValidade.getText());
+        planosDeSaude.setDataFormatada(formattedTextValidade.getText());
 
         PlanoDeSaudeDAO.atualizar(planosDeSaude);
         JOptionPane.showMessageDialog(null, "Plano de saúde editado com sucesso!", "EDITAR", JOptionPane.INFORMATION_MESSAGE);
         dispose();
     }
-    
-    private void adicionar(){
+
+    private void adicionar() {
+        
+        CharSequence branco = " ";
+        
+        //Espaços em branco
+        if (formattedTextValidade.getText().contains(branco) == true || formattedTextNumero.getText().contains(branco) == true || textFieldOperadora.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, " Os campos: Operadora, número e validade são obrigatórios!!", "Atenção!!", JOptionPane.WARNING_MESSAGE);
+            textFieldCategoria.requestFocus();
+        } else {
+
+            PlanoDeSaude planoDeSaude = new PlanoDeSaude();
+            planoDeSaude.setCategoria(textFieldCategoria.getText());
+            planoDeSaude.setNumero(formattedTextNumero.getText());
+            planoDeSaude.setOperadora(textFieldOperadora.getText());
+            planoDeSaude.setDataFormatada(formattedTextValidade.getText());
+
+            PlanoDeSaudeDAO.gravar(planoDeSaude);
+
+            JOptionPane.showMessageDialog(this,
+                    "Plano de saúde gravado com sucesso!",
+                    "Plano de saúde",
+                    JOptionPane.INFORMATION_MESSAGE);
+            dispose();
+        }
+
         //Criar objeto
-        PlanoDeSaude planoDeSaude = new PlanoDeSaude();
-        planoDeSaude.setCategoria(textFieldCategoria.getText());
-        planoDeSaude.setNumero(formattedTextNumero.getText());
-        planoDeSaude.setOperadora(textFieldOperadora.getText());
-        planoDeSaude.setDataFormatada(formattedTextValidade.getText());
-        
         //Grava objeto
-        PlanoDeSaudeDAO.gravar(planoDeSaude);
-        
-        JOptionPane.showMessageDialog(this,
-                "Plano de saúde gravado com sucesso!",
-                "Plano de saúde",
-                JOptionPane.INFORMATION_MESSAGE);
-        dispose();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancelar;
@@ -296,7 +309,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
     private javax.swing.JPanel panelDetalhes;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JTextField textFieldCategoria;
-    private javax.swing.JTextField textFieldNumero1;
+    private javax.swing.JTextField textFieldCodigo;
     private javax.swing.JTextField textFieldOperadora;
     // End of variables declaration//GEN-END:variables
 }

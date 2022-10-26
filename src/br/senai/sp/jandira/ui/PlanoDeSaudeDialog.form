@@ -97,7 +97,7 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelNumero1" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
-                              <Component id="textFieldNumero1" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="textFieldCodigo" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -108,14 +108,9 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelCategoria" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelNumero" min="-2" pref="53" max="-2" attributes="0"/>
-                                      <Component id="labelOperadora" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="labelCategoria" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelNumero" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="labelOperadora" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="textFieldCategoria" alignment="0" max="32767" attributes="0"/>
                                   <Component id="textFieldOperadora" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
@@ -162,7 +157,7 @@
                   <EmptySpace pref="20" max="32767" attributes="0"/>
                   <Component id="labelNumero1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="textFieldNumero1" min="-2" max="-2" attributes="0"/>
+                  <Component id="textFieldCodigo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="labelNumero" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -238,6 +233,9 @@
               <Dimension value="[80, 20]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelNumero">
           <Properties>
@@ -275,12 +273,12 @@
             <Property name="text" type="java.lang.String" value="Validade:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="textFieldNumero1">
+        <Component class="javax.swing.JTextField" name="textFieldCodigo">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldNumero1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldCodigoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelNumero1">

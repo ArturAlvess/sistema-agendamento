@@ -2,6 +2,7 @@ package br.senai.sp.jandira.model;
 
 import javax.swing.JOptionPane;
 
+
 public class Especialidade {
 
     private static int contador = 99;
@@ -35,7 +36,7 @@ public class Especialidade {
         if (nome.length() >= 3) {
             this.nome = nome;
         } else {
-            JOptionPane.showMessageDialog(null, nome + " não é um nome válido!\nDeve conter ao menos 3 letras.");
+            JOptionPane.showMessageDialog(null, nome + " Não é um nome válido!\nDeve conter ao menos 3 letras.");
         }
 
     }
@@ -48,7 +49,7 @@ public class Especialidade {
         if (descricao.length() >= 10) {
             this.descricao = descricao;
         } else {
-            JOptionPane.showMessageDialog(null, descricao + " não é uma descrição válida! \nDeve conter ao menos 10 caracteres.");
+            JOptionPane.showMessageDialog(null, descricao + " Não é uma descrição válida! \nDeve conter ao menos 10 caracteres.");
         }
     }
 

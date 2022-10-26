@@ -14,45 +14,43 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
     public EspecialidadesDialog(java.awt.Frame parent,
             boolean modal,
             OperacaoEnum operacao) {
-        
+
         super(parent,
                 modal);
         this.operacao = operacao;
         initComponents();
         preencherTitulo();
-        
+
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass()
-                        .getResource
-        ("/br/senai/sp/jandira/img/agenda.png")));
+                        .getResource("/br/senai/sp/jandira/img/agenda.png")));
     }
 
     public EspecialidadesDialog(java.awt.Frame parent,
             boolean modal,
             Especialidade e,
             OperacaoEnum operacao) {
-        
+
         super(parent, modal);
         initComponents();
-        
+
         especialidade = e;
         this.operacao = operacao;
         preencherFormulario();
         preencherTitulo();
-        
+
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass()
-                        .getResource
-        ("/br/senai/sp/jandira/img/agenda.png")));
+                        .getResource("/br/senai/sp/jandira/img/agenda.png")));
     }
 
     private void preencherFormulario() {
-     
+
         textFieldNomeEspecialidade.setText(especialidade.getNome());
         textFieldDescEspecialidade.setText(especialidade.getDescricao());
     }
-    
-    private void preencherTitulo(){
+
+    private void preencherTitulo() {
         labelTitulo.setText("Especialidades - " + operacao);
     }
 
@@ -144,6 +142,11 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         buttonCancelar.setForeground(new java.awt.Color(204, 0, 0));
         buttonCancelar.setText("CANCELAR");
         buttonCancelar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0), 2));
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
         panelDetalhes.add(buttonCancelar);
         buttonCancelar.setBounds(500, 220, 100, 60);
 
@@ -159,9 +162,9 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_textFieldCodigoActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-        if(operacao == OperacaoEnum.ADICIONAR){
+        if (operacao == OperacaoEnum.ADICIONAR) {
             adicionar();
-        }else{
+        } else {
             editar();
         }
     }//GEN-LAST:event_buttonSalvarActionPerformed
@@ -169,32 +172,42 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
     private void textFieldNomeEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNomeEspecialidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldNomeEspecialidadeActionPerformed
-    
-    private void editar(){
+
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void editar() {
         especialidade.setNome(textFieldNomeEspecialidade.getText());
         especialidade.setDescricao(textFieldDescEspecialidade.getText());
-        
+
         EspecialidadeDAO.atualizar(especialidade);
-        
+
         JOptionPane.showMessageDialog(null, "Especialidade editada com sucesso!", "EDITAR", JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    
-    private void adicionar(){
+
+    private void adicionar() {
         // Criar objeto especialidade
         Especialidade especialidade = new Especialidade();
         especialidade.setNome(textFieldNomeEspecialidade.getText());
         especialidade.setDescricao(textFieldDescEspecialidade.getText());
 
-        // Gravar o objeto
-        EspecialidadeDAO.gravar(especialidade);
+        // Espaços em branco
+        if (textFieldNomeEspecialidade.getText().length() < 3 || textFieldDescEspecialidade.getText().length() < 10) {
+            JOptionPane.showMessageDialog(this, "Ambos os campos são obrigatórios!", "Atenção!", JOptionPane.WARNING_MESSAGE);
+            textFieldNomeEspecialidade.requestFocus();
+        } else {
+           EspecialidadeDAO.gravar(especialidade);
 
-        JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(this,
                 "Especialidade gravada com sucesso!",
                 "Especialidades",
                 JOptionPane.INFORMATION_MESSAGE);
 
         dispose();
+        }
+        // Gravar o objeto
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
