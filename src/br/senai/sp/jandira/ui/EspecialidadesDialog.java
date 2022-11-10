@@ -167,6 +167,7 @@ public class EspecialidadesDialog extends javax.swing.JDialog {
         } else {
             editar();
         }
+        dispose();
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     private void textFieldNomeEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldNomeEspecialidadeActionPerformed

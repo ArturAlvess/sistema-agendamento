@@ -34,6 +34,18 @@ public class PlanoDeSaude {
         this.numero = numero;
         gerarCodigo();
     }
+    public PlanoDeSaude(String operadora, String categoria, LocalDate validade, String numero, Integer codigo) {
+        
+        formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        dataFormatada = validade.format(formatador);
+        
+        this.operadora = operadora;
+        this.categoria = categoria;
+        this.validade = validade;
+        this.numero = numero;
+        this.codigo = codigo;
+        this.contador = codigo;
+    }
 
     public PlanoDeSaude() {
         gerarCodigo();
@@ -95,5 +107,8 @@ public class PlanoDeSaude {
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
-
+    
+    public String getPlanoDeSaudeSeparadoPorPontoEVirgula(){
+        return this.codigo + ";" + this.numero + ";" + this.operadora + ";" + this.categoria + ";" + this.dataFormatada;
+    }
 }
