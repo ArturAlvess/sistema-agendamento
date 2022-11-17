@@ -6,6 +6,7 @@ public class HomeFrame extends javax.swing.JFrame {
 
     private EspecialidadesPanel especialidadesPanel;
     private PlanoDeSaudePanel planosDeSaudePanel;
+    
 
     private final int POS_X = 20;
     private final int POS_Y = 100;

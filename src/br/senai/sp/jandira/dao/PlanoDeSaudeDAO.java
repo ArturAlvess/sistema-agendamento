@@ -3,6 +3,7 @@ package br.senai.sp.jandira.dao;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -18,7 +19,9 @@ import javax.swing.table.DefaultTableModel;
 public class PlanoDeSaudeDAO {
     
     private final static String URL = "C:\\Users\\22282175\\JAVA\\PlanoDeSaude.txt";
+    private final static String URL_TEMP = "C:\\Users\\22282175\\JAVA\\PlanoDeSaude-temp.txt";
     private final static Path PATH = Paths.get(URL);
+    private final static Path PATH_TEMP = Paths.get(URL_TEMP);
 
     private static ArrayList<PlanoDeSaude> planosDeSaude = new ArrayList<>();
 
@@ -28,7 +31,7 @@ public class PlanoDeSaudeDAO {
 
     public static PlanoDeSaude getPlanoDeSaude(Integer codigo) {
         for (PlanoDeSaude p : planosDeSaude) {
-            if (codigo == p.getCodigo()) {
+            if (codigo.equals(p.getCodigo())) {
                 return p;
             }
         }
@@ -55,21 +58,59 @@ public class PlanoDeSaudeDAO {
 
     public static void excluir(Integer codigo) {
         for (PlanoDeSaude p : planosDeSaude) {
-            if (codigo == p.getCodigo()) {
+            if (codigo.equals(codigo)) {
                 planosDeSaude.remove(p);
                 break;
             }
+        }
+        atualizarArquivos();
+    }
+    private static void atualizarArquivos(){
+        
+        // Passo 1 - Criar uma representação dos arquivos manipulados
+        File arquivoAtual = new File(URL);
+        File arquivoTemp = new File(URL_TEMP);
+
+        try {
+            // Criar o arquivo temporário
+            arquivoTemp.createNewFile();
+
+            // Abrir o arquivo temporário para escrita
+            BufferedWriter bwTemp = Files.newBufferedWriter(PATH_TEMP,
+                    StandardOpenOption.APPEND,
+                    StandardOpenOption.WRITE);
+
+            // Iterar na lista para adicionar as especialidades
+            // no arquivo temporário, exceto o registro que
+            // não queremos mais
+            
+            for(PlanoDeSaude p : planosDeSaude){
+                bwTemp.write(p.getPlanoDeSaudeSeparadoPorPontoEVirgula());
+                bwTemp.newLine();
+            }
+            
+            bwTemp.close();
+            
+            // Excluir arquivo atual
+            arquivoAtual.delete();
+            
+            // Renomear o arquivo temporário
+            arquivoTemp.renameTo(arquivoAtual);
+
+        } catch (Exception erro) {
+            erro.printStackTrace();
         }
     }
 
     public static void atualizar(PlanoDeSaude novo) {
         for (PlanoDeSaude p : planosDeSaude) {
-            if (novo.getCodigo() == p.getCodigo()) {
+            if (novo.getCodigo().equals(p.getCodigo())) {
                 planosDeSaude.set(planosDeSaude.indexOf(p), novo);
                 break;
                 
             }
         }
+        atualizarArquivos();
     }
     
     // Lista inicial de planos de saúde
