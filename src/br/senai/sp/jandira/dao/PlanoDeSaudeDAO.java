@@ -10,8 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -141,7 +139,7 @@ public class PlanoDeSaudeDAO {
             leitor.close();
             
         } catch (IOException error) {
-            JOptionPane.showMessageDialog(null, "ERro!");
+            JOptionPane.showMessageDialog(null, "Erro!");
         }
     }
     

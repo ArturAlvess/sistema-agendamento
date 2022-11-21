@@ -29,6 +29,7 @@ public class PlanoDeSaudeDialog extends javax.swing.JDialog {
 
         preencherFormulario();
         preencherTitulo();
+        
 
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass()
