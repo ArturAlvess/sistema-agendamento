@@ -10,6 +10,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -117,12 +119,14 @@ public class MedicoDAO {
                 
                 String[] vetor = linha.split(";");
                 
-                Medico m = new Medico(vetor[1], vetor[2], vetor[3], Integer.valueOf(vetor[0]));
+              
+                Medico m = new Medico(vetor[2], vetor[3], vetor[4], vetor[1], vetor[5], Integer.valueOf(vetor[0]));
+          
                 
                 medicos.add(m);
                 linha = leitor.readLine();
                 
-                
+      
             }
             
             //Fechar
@@ -137,13 +141,15 @@ public class MedicoDAO {
         
         String[] titulos = {"Código", "CRM", "Nome", "Telefone"};
         
-        String[][] dados = new String[medicos.size()][4];
+        String[][] dados = new String[medicos.size()][6];
         int i = 0;
         for(Medico m : medicos){
             dados[i][0] = m.getCodigo().toString();
             dados[i][1] = m.getCrm();
             dados[i][2] = m.getNome();
             dados[i][3] = m.getTelefone();
+            dados[i][4] = m.getEmail();
+            dados[i][5] = m.getDataFormatada();
             i++;
         }
         DefaultTableModel model = new DefaultTableModel(dados, titulos);

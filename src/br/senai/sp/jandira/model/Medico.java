@@ -46,15 +46,13 @@ public class Medico {
         gerarCodigo();
     }
     
-    public Medico(String nome, String telefone, String email, String crm, Especialidade[] especialidade, LocalDate dataDeNascimento, Integer codigo) {
-
-        formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        dataFormatada = dataDeNascimento.format(formatador);
+    public Medico(String nome, String telefone, String email, String crm, String dataDeNascimento, Integer codigo) {
 
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.crm = crm;
+        this.dataFormatada = dataDeNascimento;
         this.especialidade = especialidade;
         this.codigo = codigo;
         this.contador = codigo;

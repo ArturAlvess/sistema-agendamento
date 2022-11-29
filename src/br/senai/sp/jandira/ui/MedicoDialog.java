@@ -20,6 +20,7 @@ public class MedicoDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.operacao = operacao;
+        
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass()
                         .getResource("/br/senai/sp/jandira/img/agenda.png")));
@@ -28,6 +29,8 @@ public class MedicoDialog extends javax.swing.JDialog {
     public MedicoDialog(java.awt.Frame parent, boolean modal, Medico m ,OperacaoEnum operacao) {
         super(parent, modal);
         initComponents();
+        
+        medicos = m;
         this.operacao = operacao;
         
         preencherFormulario();
@@ -38,6 +41,7 @@ public class MedicoDialog extends javax.swing.JDialog {
     }
 
    private void preencherFormulario(){
+       
        formattedTextFieldCRM.setText(medicos.getCrm());
        textFieldNomeMedico.setText(medicos.getNome());
        formattedTextFieldTelefone.setText(medicos.getTelefone());
@@ -46,7 +50,7 @@ public class MedicoDialog extends javax.swing.JDialog {
    }
    
    private void preencherTitulo(){
-       labelTitulo.setText("Médico" + operacao);
+       labelTitulo.setText("Médico - " + operacao);
    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -251,11 +255,9 @@ public class MedicoDialog extends javax.swing.JDialog {
                             .addComponent(textFieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelDetalhesLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(labelCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(formattedTextFieldCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
+                            .addComponent(formattedTextFieldCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
                         .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -303,7 +305,6 @@ public class MedicoDialog extends javax.swing.JDialog {
                         .addComponent(labelNomeMedico)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(textFieldNomeMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelDetalhesLayout.createSequentialGroup()
                         .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -334,7 +335,7 @@ public class MedicoDialog extends javax.swing.JDialog {
                 .addGap(16, 16, 16))
             .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDetalhesLayout.createSequentialGroup()
-                    .addContainerGap(242, Short.MAX_VALUE)
+                    .addContainerGap(241, Short.MAX_VALUE)
                     .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(16, 16, 16)))
         );
