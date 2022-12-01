@@ -1,5 +1,6 @@
 package br.senai.sp.jandira.dao;
 
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.PlanoDeSaude;
 import java.io.BufferedReader;
@@ -13,6 +14,7 @@ import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -50,6 +52,7 @@ public class MedicoDAO {
             escritor.write(m.getMedicoSeparadoPorPontoEVirgula());
             escritor.newLine();
             escritor.close();
+            
         } catch (IOException erro) {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
         }
@@ -57,11 +60,12 @@ public class MedicoDAO {
     
     public static void excluir(Integer codigo){
         for (Medico m : medicos){
-            if(codigo.equals(codigo)){
+            if(m.getCodigo().equals(codigo)){
                 medicos.remove(m);
                 break;
             }
         }
+        atualizarArquivos();
     }
     public static void atualizarArquivos(){
         // Criar representação de arquivos manipulados
@@ -100,7 +104,7 @@ public class MedicoDAO {
     
     public static void atualizar(Medico novo){
         for(Medico m : medicos){
-            if(novo.getCodigo().equals(m.getCodigo())){
+            if(m.getCodigo().equals(novo.getCodigo())){
                 medicos.set(medicos.indexOf(m), novo);
                 break;
             }
@@ -108,6 +112,18 @@ public class MedicoDAO {
         atualizarArquivos();
     }
     
+    public static ArrayList<Especialidade> separarCodigo(String linha){
+        String[] vetor = linha.split(";");
+        
+        int codigoEspecialidade = 6;
+        
+        ArrayList<Especialidade> codigos = new ArrayList<>();
+        while (codigoEspecialidade < vetor.length){
+            codigos.add(EspecialidadeDAO.getEspecialidade(Integer.valueOf(vetor[codigoEspecialidade])));
+            codigoEspecialidade++;
+        }
+        return codigos;
+    }
     //Lista inicial
     public static void criarListaDeMedicos(){
         try {
@@ -120,7 +136,7 @@ public class MedicoDAO {
                 String[] vetor = linha.split(";");
                 
               
-                Medico m = new Medico(vetor[2], vetor[3], vetor[4], vetor[1], vetor[5], Integer.valueOf(vetor[0]));
+                Medico m = new Medico(vetor[2], vetor[3], vetor[4], vetor[1], vetor[5], Integer.valueOf(vetor[0]), separarCodigo(linha));
           
                 
                 medicos.add(m);
@@ -135,6 +151,26 @@ public class MedicoDAO {
         } catch (IOException erro) {
             JOptionPane.showMessageDialog(null, "erro!");
         }
+    }
+    
+    public static DefaultListModel<Especialidade> getModelEsp(){
+        
+        DefaultListModel<Especialidade> listaEspecialidade = new DefaultListModel<>();
+        
+        try {
+            BufferedReader leitor = Files.newBufferedReader(PATH);
+            
+            String linha = leitor.readLine();
+            
+            for(Especialidade percorrer : separarCodigo(linha)){
+                listaEspecialidade.addElement(percorrer);
+            }
+            leitor.close();
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ocorreu uma piabice");
+        }
+        return listaEspecialidade;
     }
     
     public static DefaultTableModel getMedicosModel(){

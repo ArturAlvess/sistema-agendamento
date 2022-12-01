@@ -1,57 +1,65 @@
 package br.senai.sp.jandira.ui;
 
+import br.senai.sp.jandira.dao.EspecialidadeDAO;
 import br.senai.sp.jandira.dao.MedicoDAO;
+import br.senai.sp.jandira.model.Especialidade;
 import br.senai.sp.jandira.model.Medico;
 import br.senai.sp.jandira.model.OperacaoEnum;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 public class MedicoDialog extends javax.swing.JDialog {
 
-    
     private Medico medicos;
     private OperacaoEnum operacao;
-    
-    public MedicoDialog(){
-        
+
+    public MedicoDialog() {
+
     }
-    
+
     public MedicoDialog(java.awt.Frame parent, boolean modal, OperacaoEnum operacao) {
         super(parent, modal);
         initComponents();
         this.operacao = operacao;
         
-        setIconImage(Toolkit.getDefaultToolkit()
-                .getImage(getClass()
-                        .getResource("/br/senai/sp/jandira/img/agenda.png")));
-    }
-    
-    public MedicoDialog(java.awt.Frame parent, boolean modal, Medico m ,OperacaoEnum operacao) {
-        super(parent, modal);
-        initComponents();
-        
-        medicos = m;
-        this.operacao = operacao;
-        
-        preencherFormulario();
-        preencherTitulo();
+        preencherEspecialidades();
         setIconImage(Toolkit.getDefaultToolkit()
                 .getImage(getClass()
                         .getResource("/br/senai/sp/jandira/img/agenda.png")));
     }
 
-   private void preencherFormulario(){
-       
-       formattedTextFieldCRM.setText(medicos.getCrm());
-       textFieldNomeMedico.setText(medicos.getNome());
-       formattedTextFieldTelefone.setText(medicos.getTelefone());
-       textFieldEmail.setText(medicos.getEmail());
-       formattedTextFieldDataNascimento.setText(medicos.getDataFormatada());
-   }
-   
-   private void preencherTitulo(){
-       labelTitulo.setText("Médico - " + operacao);
-   }
+    public MedicoDialog(java.awt.Frame parent, boolean modal, Medico m, OperacaoEnum operacao) {
+        super(parent, modal);
+        initComponents();
+
+        medicos = m;
+        this.operacao = operacao;
+
+        preencherFormulario();
+        preencherTitulo();
+        preencherEspecialidades();
+        preencherEspecialidadesDoMedico();
+        setIconImage(Toolkit.getDefaultToolkit()
+                .getImage(getClass()
+                        .getResource("/br/senai/sp/jandira/img/agenda.png")));
+    }
+
+    private void preencherFormulario() {
+
+        formattedTextFieldCRM.setText(medicos.getCrm());
+        textFieldNomeMedico.setText(medicos.getNome());
+        formattedTextFieldTelefone.setText(medicos.getTelefone());
+        textFieldEmail.setText(medicos.getEmail());
+        formattedTextFieldDataNascimento.setText(medicos.getDataFormatada());
+    }
+
+    private void preencherTitulo() {
+        labelTitulo.setText("Médico - " + operacao);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,12 +84,12 @@ public class MedicoDialog extends javax.swing.JDialog {
         labelDataNascimento = new javax.swing.JLabel();
         labelListaDeEspecialidades = new javax.swing.JLabel();
         scrollListaEspecialidades = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListEspecialidade = new javax.swing.JList<>();
         buttonRemoverEspecialidade = new javax.swing.JButton();
-        buttonAddEspecialidade = new javax.swing.JButton();
+        buttonMoverEspecialidade = new javax.swing.JButton();
         labelEspecialidadesMedico = new javax.swing.JLabel();
         scrollListaMedicoEspecialidades = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        jListMedico = new javax.swing.JList<>();
 
         jTextField3.setText("jTextField3");
 
@@ -210,26 +218,31 @@ public class MedicoDialog extends javax.swing.JDialog {
 
         labelListaDeEspecialidades.setText("Lista de especialidades:");
 
-        scrollListaEspecialidades.setViewportView(jList1);
+        scrollListaEspecialidades.setViewportView(jListEspecialidade);
 
         buttonRemoverEspecialidade.setBackground(new java.awt.Color(255, 0, 0));
         buttonRemoverEspecialidade.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         buttonRemoverEspecialidade.setForeground(new java.awt.Color(255, 255, 255));
         buttonRemoverEspecialidade.setText("<");
-
-        buttonAddEspecialidade.setBackground(new java.awt.Color(0, 204, 0));
-        buttonAddEspecialidade.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        buttonAddEspecialidade.setForeground(new java.awt.Color(255, 255, 255));
-        buttonAddEspecialidade.setText(">");
-        buttonAddEspecialidade.addActionListener(new java.awt.event.ActionListener() {
+        buttonRemoverEspecialidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAddEspecialidadeActionPerformed(evt);
+                buttonRemoverEspecialidadeActionPerformed(evt);
+            }
+        });
+
+        buttonMoverEspecialidade.setBackground(new java.awt.Color(0, 204, 0));
+        buttonMoverEspecialidade.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        buttonMoverEspecialidade.setForeground(new java.awt.Color(255, 255, 255));
+        buttonMoverEspecialidade.setText(">");
+        buttonMoverEspecialidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMoverEspecialidadeActionPerformed(evt);
             }
         });
 
         labelEspecialidadesMedico.setText("Especialidades do médico(a):");
 
-        scrollListaMedicoEspecialidades.setViewportView(jList2);
+        scrollListaMedicoEspecialidades.setViewportView(jListMedico);
 
         javax.swing.GroupLayout panelDetalhesLayout = new javax.swing.GroupLayout(panelDetalhes);
         panelDetalhes.setLayout(panelDetalhesLayout);
@@ -243,7 +256,7 @@ public class MedicoDialog extends javax.swing.JDialog {
                         .addGap(27, 27, 27)
                         .addGroup(panelDetalhesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buttonRemoverEspecialidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonAddEspecialidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonMoverEspecialidade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(30, 30, 30)
                         .addComponent(scrollListaMedicoEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -325,7 +338,7 @@ public class MedicoDialog extends javax.swing.JDialog {
                             .addComponent(scrollListaEspecialidades, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDetalhesLayout.createSequentialGroup()
-                                .addComponent(buttonAddEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(buttonMoverEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(buttonRemoverEspecialidade)
                                 .addGap(19, 19, 19))))
@@ -380,66 +393,146 @@ public class MedicoDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldEmailActionPerformed
 
-    private void buttonAddEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAddEspecialidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonAddEspecialidadeActionPerformed
+    private void buttonMoverEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMoverEspecialidadeActionPerformed
 
-    private void editar(){
+        if (jListEspecialidade.isSelectionEmpty() == false) {
+            
+            ArrayList<Especialidade> novaLista = new ArrayList<>();
+        int tamanho = jListMedico.getModel().getSize();
+        for (int i = 0; i < tamanho; i++) {
+            novaLista.add(jListMedico.getModel().getElementAt(i));
+        }
+
+        if (novaLista.contains(jListEspecialidade.getSelectedValue()) == false) {
+            novaLista.add(jListEspecialidade.getSelectedValue());
+
+            DefaultListModel<Especialidade> especialidadesLista = new DefaultListModel<Especialidade>();
+            for (Especialidade percorrer : novaLista) {
+                especialidadesLista.addElement(percorrer);
+            }
+            jListMedico.setModel(especialidadesLista);
+        } else {
+            JOptionPane.showMessageDialog(null,
+                    "Especialidade já existente",
+                    "Médico - Editar",
+                    JOptionPane.WARNING_MESSAGE, null);
+        }
+        } else{
+            JOptionPane.showMessageDialog(this,
+                    "Selecione a especialidade desejada!",
+                    "Editar - Médico",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+        
+           
+    
+
+
+    }//GEN-LAST:event_buttonMoverEspecialidadeActionPerformed
+
+    private void buttonRemoverEspecialidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverEspecialidadeActionPerformed
+        if(jListMedico.isSelectionEmpty() == false){
+            ArrayList<Especialidade> novaLista = new ArrayList<>();
+            int tamanho = jListMedico.getModel().getSize();
+            for(int i = 0; i < tamanho; i++){
+                novaLista.add(jListMedico.getModel().getElementAt(i));
+            }
+            novaLista.remove(jListMedico.getSelectedValue());
+            
+            DefaultListModel<Especialidade> especialidadesLista = new DefaultListModel<Especialidade>();
+            for (Especialidade percorrer : novaLista) {
+                especialidadesLista.addElement(percorrer);
+            }
+            jListMedico.setModel(especialidadesLista);
+            
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Selecione a especialidade que deseja remover!",
+                    "Editar - Médico",
+                    JOptionPane.WARNING_MESSAGE, null);
+        }
+    }//GEN-LAST:event_buttonRemoverEspecialidadeActionPerformed
+
+    private ArrayList<Especialidade> pegarEspecialidades(JList<Especialidade> lista) {
+        int tamanho = lista.getModel().getSize();
+        ArrayList<Especialidade> novaLista = new ArrayList<>();
+        for (int i = 0; i < tamanho; i++) {
+            novaLista.add(lista.getModel().getElementAt(i));
+        }
+        return novaLista;
+    }
+
+    private void editar() {
         medicos.setCrm(formattedTextFieldCRM.getText());
         medicos.setNome(textFieldNomeMedico.getText());
         medicos.setTelefone(formattedTextFieldTelefone.getText());
         medicos.setEmail(textFieldEmail.getText());
         medicos.setDataFormatada(formattedTextFieldDataNascimento.getText());
-        
+        medicos.setEspecialidades(pegarEspecialidades(jListMedico));
+
         MedicoDAO.atualizar(medicos);
         JOptionPane.showMessageDialog(null,
                 "Detalhes do médico editados com sucesso!",
                 "Editar", JOptionPane.INFORMATION_MESSAGE);
         dispose();
     }
-    
-    private void adicionar(){
+
+    private void preencherEspecialidades() {
+        jListEspecialidade.setModel(EspecialidadeDAO.getModelEsp());
+    }
+
+    private void preencherEspecialidadesDoMedico() {
+
+        DefaultListModel<Especialidade> especialidadesMedico = new DefaultListModel<>();
+        for (Especialidade percorrer : medicos.getEspecialidades()) {
+            especialidadesMedico.addElement(percorrer);
+        }
+        jListMedico.setModel(especialidadesMedico);
+    }
+
+    private void adicionar() {
         CharSequence branco = " ";
-        
+
         // Espaços em branco
-        if(formattedTextFieldCRM.getText().contains(branco) == true||
-                textFieldNomeMedico.getText().isEmpty() || 
-                formattedTextFieldTelefone.getText().contains(branco) == true|| 
-                textFieldEmail.getText().isEmpty() || 
-                        formattedTextFieldDataNascimento.getText().contains(branco) == true){
-            
+        if (formattedTextFieldCRM.getText().contains(branco) == true
+                || textFieldNomeMedico.getText().isEmpty()
+                || formattedTextFieldTelefone.getText().contains(branco) == true
+                || textFieldEmail.getText().isEmpty()
+                || formattedTextFieldDataNascimento.getText().contains(branco) == true) {
+
             JOptionPane.showMessageDialog(this,
                     "Todos os campos são obrigatórios!!",
                     "Atenção",
                     JOptionPane.WARNING_MESSAGE);
             formattedTextFieldCRM.requestFocus();
-        }else{
+        } else {
             Medico medico = new Medico();
             medico.setCrm(formattedTextFieldCRM.getText());
             medico.setNome(textFieldNomeMedico.getText());
             medico.setTelefone(formattedTextFieldTelefone.getText());
             medico.setEmail(textFieldEmail.getText());
             medico.setDataFormatada(formattedTextFieldDataNascimento.getText());
-            
+            medico.setEspecialidades(pegarEspecialidades(jListMedico));
+
             MedicoDAO.gravar(medico);
-            JOptionPane.showMessageDialog(this, 
+            JOptionPane.showMessageDialog(this,
                     "Médico gravado com sucesso!",
-                    "Médico", 
+                    "Médico",
                     JOptionPane.INFORMATION_MESSAGE);
             dispose();
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonAddEspecialidade;
     private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonMoverEspecialidade;
     private javax.swing.JButton buttonRemoverEspecialidade;
     private javax.swing.JButton buttonSalvar;
     private javax.swing.JFormattedTextField formattedTextFieldCRM;
     private javax.swing.JFormattedTextField formattedTextFieldDataNascimento;
     private javax.swing.JFormattedTextField formattedTextFieldTelefone;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
+    private javax.swing.JList<Especialidade> jListEspecialidade;
+    private javax.swing.JList<Especialidade> jListMedico;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel labelCRM;

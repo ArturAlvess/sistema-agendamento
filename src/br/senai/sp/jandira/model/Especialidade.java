@@ -46,7 +46,11 @@ public class Especialidade {
         } else {
             JOptionPane.showMessageDialog(null, nome + " Não é um nome válido!\nDeve conter ao menos 3 letras.");
         }
-
+        
+    }
+    
+    public String toString(){
+        return nome;
     }
 
     public String getNome() {

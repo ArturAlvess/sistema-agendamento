@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +22,7 @@ public class EspecialidadeDAO {
     private final static Path PATH_TEMP = Paths.get(URL_TEMP);
 
     private static ArrayList<Especialidade> especialidades = new ArrayList<>();
+    private static ArrayList<String> especialidadesNomes = new ArrayList<>();
 
     public static ArrayList<Especialidade> getEspecialidades() {
         return especialidades;
@@ -28,7 +30,7 @@ public class EspecialidadeDAO {
 
     public static Especialidade getEspecialidade(Integer codigo) {
         for (Especialidade e : especialidades) {
-            if (codigo == e.getCodigo()) {
+            if (e.getCodigo().equals(codigo)) {
                 return e;
             }
         }
@@ -140,6 +142,14 @@ public class EspecialidadeDAO {
             JOptionPane.showConfirmDialog(null, "ocorreu uma piabice!!!!");
         }
 
+    }
+    
+    public static DefaultListModel<Especialidade> getModelEsp(){
+        DefaultListModel<Especialidade> listaEspecialidades = new DefaultListModel<Especialidade>();
+        for(Especialidade percorrer : getEspecialidades()){
+            listaEspecialidades.addElement(percorrer);
+        }
+        return listaEspecialidades;
     }
 
     public static DefaultTableModel getEspecialidadesModel() {
